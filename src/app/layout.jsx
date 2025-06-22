@@ -1,4 +1,3 @@
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import "@mantine/core/styles.css";
 import {
@@ -6,6 +5,8 @@ import {
   MantineProvider,
   mantineHtmlProps,
 } from "@mantine/core";
+import { RootStyleRegistry } from "./EmotionRootStyleRegistry";
+import { emotionTransform, MantineEmotionProvider } from "@mantine/emotion";
 
 export const metadata = {
   title: "Lift Monitor",
@@ -29,16 +30,21 @@ export default function RootLayout({ children }) {
         <ColorSchemeScript />
       </head>
       <body>
-        <MantineProvider
-          theme={{
-            colors: customColors,
-            primaryColor: "persian", // optional
-          }}
-          withGlobalStyles
-          withNormalizeCSS
-        >
-          {children}
-        </MantineProvider>
+        <RootStyleRegistry>
+          <MantineEmotionProvider>
+            <MantineProvider
+              theme={{
+                colors: customColors,
+                primaryColor: "persian", // optional
+              }}
+              withGlobalStyles
+              withNormalizeCSS
+              stylesTransform={emotionTransform}
+            >
+              {children}
+            </MantineProvider>
+          </MantineEmotionProvider>
+        </RootStyleRegistry>
       </body>
     </html>
   );
