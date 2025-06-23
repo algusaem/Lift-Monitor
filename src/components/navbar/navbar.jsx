@@ -1,4 +1,5 @@
-import { Avatar, Button, Flex, Text } from "@mantine/core";
+import { Avatar, Flex, Text } from "@mantine/core";
+import Link from "next/link";
 import { LiaDumbbellSolid } from "react-icons/lia";
 
 const Navbar = () => {
@@ -16,9 +17,9 @@ const Navbar = () => {
         <LiaDumbbellSolid size={24} color="var(--mantine-color-persian-6)" />
         <Text fw={600}>Lift Logger</Text>
       </Flex>
-      <Flex gap={8}>
-        <NavButton>Logs</NavButton>
-        <NavButton>History </NavButton>
+      <Flex gap={18}>
+        <NavbarLink href="/">Logs</NavbarLink>
+        <NavbarLink href="/history">History</NavbarLink>
       </Flex>
       <Avatar color="persian" />
     </Flex>
@@ -27,22 +28,20 @@ const Navbar = () => {
 
 export default Navbar;
 
-const NavButton = ({ children }) => {
+const NavbarLink = ({ href, children }) => {
   return (
-    <Button
-      variant="transparent"
-      color="black"
-      size="compact-sm"
-      miw={75}
-      styles={{
-        root: {
-          "&:hover": {
-            textDecoration: "underline",
-          },
+    <Text
+      component={Link}
+      href={href}
+      fw={500}
+      sx={{
+        "&:hover": {
+          color: "var(--mantine-color-persian-6)",
+          textDecoration: "underline",
         },
       }}
     >
       {children}
-    </Button>
+    </Text>
   );
 };
