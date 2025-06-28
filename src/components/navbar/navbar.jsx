@@ -8,6 +8,7 @@ import { useDisclosure } from "@mantine/hooks";
 import { Drawer, Button } from "@mantine/core";
 import { CiLogout } from "react-icons/ci";
 import { IoReorderThreeOutline } from "react-icons/io5";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
   return (
@@ -66,31 +67,33 @@ const MobileDrawer = () => {
   );
 };
 
-const DesktopNavBar = () => {
-  return (
-    <Flex
-      justify="space-between"
-      align="center"
-      w={"100%"}
-      display={{ base: "none", sm: "flex" }}
-    >
-      <NavIcon />
-      <Flex gap={18}>
-        <NavbarLink href="/">Logs</NavbarLink>
-        <NavbarLink href="/history">History</NavbarLink>
-      </Flex>
-      <FaRegUser />
+const DesktopNavBar = () => (
+  <Flex
+    justify="space-between"
+    align="center"
+    w={"100%"}
+    display={{ base: "none", sm: "flex" }}
+  >
+    <NavIcon />
+    <Flex gap={18}>
+      <NavbarLink href="/">Logs</NavbarLink>
+      <NavbarLink href="/history">History</NavbarLink>
     </Flex>
-  );
-};
+    <FaRegUser />
+  </Flex>
+);
 
 const NavbarLink = ({ href, children }) => {
+  const pathname = usePathname();
+  const isActive = pathname === href;
+
   return (
     <Text
       component={Link}
       href={href}
       fw={500}
       sx={{
+        color: isActive ? "var(--mantine-color-persian-6)" : "inherit",
         "&:hover": {
           color: "var(--mantine-color-persian-6)",
           textDecoration: "underline",
