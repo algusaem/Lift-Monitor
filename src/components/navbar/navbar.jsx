@@ -15,7 +15,6 @@ const Navbar = () => {
     <Flex
       w={"100%"}
       p={"lg"}
-      mb={"md"}
       bg={"white"}
       style={{ borderBottom: "1px solid var(--mantine-color-modern-5)" }}
     >
