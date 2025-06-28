@@ -1,9 +1,9 @@
 import Navbar from "@/components/navbar/navbar";
-import { Card, Flex, Group } from "@mantine/core";
+import { Card, Group, Stack } from "@mantine/core";
 
 export default function Home() {
   return (
-    <Flex bg={"snow"} h={"100%"} w={"100%"} direction={"column"}>
+    <Stack bg={"snow"} h={"100%"} w={"100%"}>
       <Group justify="center">
         <Navbar />
         <Card
@@ -17,6 +17,6 @@ export default function Home() {
           Card
         </Card>
       </Group>
-    </Flex>
+    </Stack>
   );
 }

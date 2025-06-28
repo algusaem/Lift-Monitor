@@ -17,11 +17,8 @@ export default defineConfig([
       },
     },
     plugins: {
-      js,
       react: pluginReact,
     },
-    ...js.configs.recommended, // ✅ ESLint built-in rules like no-unused-vars
-    ...pluginReact.configs.flat.recommended,
     rules: {
       ...js.configs.recommended.rules,
       ...pluginReact.configs.flat.recommended.rules,
