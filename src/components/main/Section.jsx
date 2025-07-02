@@ -1,4 +1,4 @@
-import { Button, Flex, Stack, Text } from "@mantine/core";
+import { Button, Flex, Stack, Text, Title } from "@mantine/core";
 import { IoAddSharp } from "react-icons/io5";
 
 const Section = () => {
@@ -11,9 +11,9 @@ const Section = () => {
       gap={8}
     >
       <Stack gap={0}>
-        <Text fz={"h1"} fw={700}>
+        <Title fz={"h1"} fw={700}>
           Log Exercise
-        </Text>
+        </Title>
         <Text c="gray">
           Track individual exercises with sets, reps and weight
         </Text>
@@ -21,7 +21,7 @@ const Section = () => {
       <Button>
         <Flex gap={4} align={"center"} justify={"center"}>
           <IoAddSharp size={24} />
-          <Text fw={600} fz={"md"}>
+          <Text fw={500} fz={"md"}>
             New Exercise
           </Text>
         </Flex>

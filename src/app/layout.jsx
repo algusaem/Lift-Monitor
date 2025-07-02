@@ -1,19 +1,24 @@
+// app/layout.tsx or app/RootLayout.tsx
+
 import "./globals.css";
 import "@mantine/core/styles.css";
+
 import {
   ColorSchemeScript,
   MantineProvider,
   mantineHtmlProps,
 } from "@mantine/core";
+import { MantineEmotionProvider, emotionTransform } from "@mantine/emotion";
 import { RootStyleRegistry } from "./EmotionRootStyleRegistry";
-import { emotionTransform, MantineEmotionProvider } from "@mantine/emotion";
+import { Inter } from "next/font/google";
 
-export const metadata = {
-  title: "Lift Monitor",
-  description: "Log your lifts and track your progress",
-};
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-inter",
+  display: "swap",
+});
 
-// Define your custom colors as 10-shade arrays
 const customColors = {
   night: Array(10).fill("#131515"),
   jet: Array(10).fill("#2b2c28"),
@@ -23,19 +28,25 @@ const customColors = {
   modern: Array(10).fill("#e5e7eb"),
 };
 
+export const metadata = {
+  title: "Lift Monitor",
+  description: "Log your lifts and track your progress",
+};
+
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" {...mantineHtmlProps}>
+    <html lang="en" className={inter.variable} {...mantineHtmlProps}>
       <head>
         <ColorSchemeScript />
       </head>
-      <body>
+      <body className={inter.className}>
         <RootStyleRegistry>
           <MantineEmotionProvider>
             <MantineProvider
               theme={{
+                fontFamily: "var(--font-inter)",
                 colors: customColors,
-                primaryColor: "persian", // optional
+                primaryColor: "persian",
               }}
               withGlobalStyles
               withNormalizeCSS
