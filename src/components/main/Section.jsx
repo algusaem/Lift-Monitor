@@ -18,14 +18,7 @@ const Section = () => {
           Track individual exercises with sets, reps and weight
         </Text>
       </Stack>
-      <Button>
-        <Flex gap={4} align={"center"} justify={"center"}>
-          <IoAddSharp size={24} />
-          <Text fw={500} fz={"md"}>
-            New Exercise
-          </Text>
-        </Flex>
-      </Button>
+      <Button leftSection={<IoAddSharp size={24} />}>New Exercise</Button>
     </Flex>
   );
 };
