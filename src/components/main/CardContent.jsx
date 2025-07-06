@@ -6,11 +6,27 @@ import "@mantine/dates/styles.css";
 import { IoAddSharp } from "react-icons/io5";
 import { useState } from "react";
 import Sets from "./Sets";
+import Form from "./Form";
 
 const CardContent = ({ exercises }) => {
   const [selectExerc, setSelectExerc] = useState(null);
   const [selectDate, setSelectDate] = useState(null);
-  const [sets, setSets] = useState(1);
+  const [sets, setSets] = useState([{ weight: "", reps: "" }]);
+  const [form, setForm] = useState(undefined);
+
+  const handleAddSet = () => {
+    setSets((prev) => [...prev, { weight: "", reps: "" }]);
+  };
+
+  const handleDeleteSet = (index) => {
+    setSets((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  const updateSet = (index, field, value) => {
+    setSets((prev) =>
+      prev.map((set, i) => (i === index ? { ...set, [field]: value } : set))
+    );
+  };
 
   return (
     <Flex w={"full"} direction={"column"} flex={1} gap={16}>
@@ -34,7 +50,7 @@ const CardContent = ({ exercises }) => {
 
         <InputLabeled label="Date">
           <DatePickerInput
-            placeholder="Pick date and time"
+            placeholder="Pick date"
             flex={1}
             variant="filled"
             value={selectDate}
@@ -48,15 +64,30 @@ const CardContent = ({ exercises }) => {
         <Text fw={500} size="lg">
           Sets
         </Text>
-        <Button leftSection={<IoAddSharp size={24} />} variant="outline">
+        <Button
+          leftSection={<IoAddSharp size={24} />}
+          variant="outline"
+          onClick={handleAddSet}
+        >
           Add Set
         </Button>
       </Flex>
 
       {/* Third row */}
-      {Array.from({ length: sets }, (_, i) => (
-        <Sets key={i + 1} index={i + 1} reps={0} weight={0} />
+      {sets.map((set, i) => (
+        <Sets
+          key={i}
+          index={i + 1}
+          reps={set.reps}
+          weight={set.weight}
+          onChange={(field, value) => updateSet(i, field, value)}
+          isDeletable={sets.length > 1}
+          onDelete={() => handleDeleteSet(i)}
+        />
       ))}
+
+      {/* Fourth row */}
+      <Form form={form} setForm={setForm} />
     </Flex>
   );
 };
