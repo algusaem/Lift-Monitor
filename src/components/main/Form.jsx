@@ -12,8 +12,9 @@ const Form = ({ form, setForm }) => {
         <Text c="gray">How was your form today?</Text>
       </Flex>
 
-      <Flex w="full" gap={8}>
+      <Flex w="full" gap={8} direction={{ base: "column", sm: "row" }}>
         <Button
+          color="black"
           variant="outline"
           bor={form === undefined ? "default" : "transparent"}
           style={{
@@ -29,6 +30,7 @@ const Form = ({ form, setForm }) => {
 
         {buttons.map((num) => (
           <Button
+            color="black"
             key={num}
             variant="outline"
             style={{

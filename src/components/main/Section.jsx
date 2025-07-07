@@ -18,7 +18,7 @@ const Section = () => {
           Track individual exercises with sets, reps and weight
         </Text>
       </Stack>
-      <Button leftSection={<IoAddSharp size={24} />}>New Exercise</Button>
+      <Button leftSection={<IoAddSharp size={24} />}>New exercise type</Button>
     </Flex>
   );
 };

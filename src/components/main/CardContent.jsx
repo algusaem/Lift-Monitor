@@ -1,9 +1,9 @@
 "use client";
-import { Flex, Select, Text, Button } from "@mantine/core";
+import { Flex, Select, Text, Button, Textarea } from "@mantine/core";
 import { DatePickerInput } from "@mantine/dates";
 import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css";
-import { IoAddSharp } from "react-icons/io5";
+import { IoAddSharp, IoSaveOutline } from "react-icons/io5";
 import { useState } from "react";
 import Sets from "./Sets";
 import Form from "./Form";
@@ -60,7 +60,7 @@ const CardContent = ({ exercises }) => {
       </Flex>
 
       {/* Second row */}
-      <Flex w={"full"} justify={"space-between"}>
+      <Flex w={"full"} justify={"space-between"} align={"center"}>
         <Text fw={500} size="lg">
           Sets
         </Text>
@@ -69,7 +69,7 @@ const CardContent = ({ exercises }) => {
           variant="outline"
           onClick={handleAddSet}
         >
-          Add Set
+          Add set
         </Button>
       </Flex>
 
@@ -88,6 +88,23 @@ const CardContent = ({ exercises }) => {
 
       {/* Fourth row */}
       <Form form={form} setForm={setForm} />
+
+      {/* Fifth row */}
+      <Flex w={"full"} direction={"column"} gap={4}>
+        <Text size="sm">Notes</Text>
+        <Textarea w={"full"} placeholder="How did you feel?" />
+      </Flex>
+
+      {/* Sixth row */}
+      <Flex w={"full"} justify={"center"}>
+        <Button
+          leftSection={<IoSaveOutline size={20} />}
+          variant="filled"
+          onClick={() => {}}
+        >
+          Save exercise
+        </Button>
+      </Flex>
     </Flex>
   );
 };

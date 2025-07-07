@@ -4,7 +4,13 @@ import { IoTrashOutline } from "react-icons/io5";
 const Sets = ({ index, reps, weight, onChange, isDeletable, onDelete }) => {
   return (
     <Card w={"full"} padding="lg" radius="md" withBorder>
-      <Flex w={"full"} align={"center"} gap={16} justify={"space-between"}>
+      <Flex
+        w={"full"}
+        align={"center"}
+        gap={16}
+        justify={"space-between"}
+        direction={{ base: "column", sm: "row" }}
+      >
         <Text>Set {index}</Text>
         <Input
           type="number"
