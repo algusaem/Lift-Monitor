@@ -1,7 +1,6 @@
-// app/layout.tsx or app/RootLayout.tsx
-
 import "./globals.css";
 import "@mantine/core/styles.css";
+import "@mantine/notifications/styles.css";
 
 import {
   ColorSchemeScript,
@@ -9,6 +8,7 @@ import {
   mantineHtmlProps,
 } from "@mantine/core";
 import { MantineEmotionProvider, emotionTransform } from "@mantine/emotion";
+import { Notifications } from "@mantine/notifications";
 import { RootStyleRegistry } from "./EmotionRootStyleRegistry";
 import { Inter } from "next/font/google";
 
@@ -52,6 +52,7 @@ export default function RootLayout({ children }) {
               withNormalizeCSS
               stylesTransform={emotionTransform}
             >
+              <Notifications />
               {children}
             </MantineProvider>
           </MantineEmotionProvider>

@@ -21,7 +21,7 @@ export default async function Home() {
       <Stack w={"full"} align="center">
         <Navbar />
         <Stack w={{ base: "100%", md: "60%" }} px={16}>
-          <Section />
+          <Section exercises={exercises} />
           <Card w={"full"} h={"100%"} padding="lg" radius="md" withBorder>
             <Flex w={"full"} h={"100%"} direction={"column"} gap={32}>
               <CardTitle />
