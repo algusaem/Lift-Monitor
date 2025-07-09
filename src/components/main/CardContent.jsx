@@ -4,29 +4,26 @@ import { DatePickerInput } from "@mantine/dates";
 import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css";
 import { IoAddSharp, IoSaveOutline } from "react-icons/io5";
-import { useState } from "react";
 import Sets from "./Sets";
 import Form from "./Form";
+import useFormLogic from "./useFormLogic";
 
 const CardContent = ({ exercises }) => {
-  const [selectExerc, setSelectExerc] = useState(null);
-  const [selectDate, setSelectDate] = useState(null);
-  const [sets, setSets] = useState([{ weight: "", reps: "" }]);
-  const [form, setForm] = useState(undefined);
-
-  const handleAddSet = () => {
-    setSets((prev) => [...prev, { weight: "", reps: "" }]);
-  };
-
-  const handleDeleteSet = (index) => {
-    setSets((prev) => prev.filter((_, i) => i !== index));
-  };
-
-  const updateSet = (index, field, value) => {
-    setSets((prev) =>
-      prev.map((set, i) => (i === index ? { ...set, [field]: value } : set))
-    );
-  };
+  const {
+    selectExerc,
+    setSelectExerc,
+    selectDate,
+    setSelectDate,
+    sets,
+    quality,
+    setQuality,
+    notes,
+    setNotes,
+    handleAddSet,
+    handleDeleteSet,
+    updateSet,
+    onSubmit,
+  } = useFormLogic(); // States and handlers of the exercise form
 
   return (
     <Flex w={"full"} direction={"column"} flex={1} gap={16}>
@@ -87,12 +84,17 @@ const CardContent = ({ exercises }) => {
       ))}
 
       {/* Fourth row */}
-      <Form form={form} setForm={setForm} />
+      <Form form={quality} setForm={setQuality} />
 
       {/* Fifth row */}
       <Flex w={"full"} direction={"column"} gap={4}>
         <Text size="sm">Notes</Text>
-        <Textarea w={"full"} placeholder="How did you feel?" />
+        <Textarea
+          w={"full"}
+          placeholder="How did you feel?"
+          value={notes}
+          onChange={(e) => setNotes(e.target.value)}
+        />
       </Flex>
 
       {/* Sixth row */}
@@ -100,7 +102,7 @@ const CardContent = ({ exercises }) => {
         <Button
           leftSection={<IoSaveOutline size={20} />}
           variant="filled"
-          onClick={() => {}}
+          onClick={onSubmit}
         >
           Save exercise
         </Button>
