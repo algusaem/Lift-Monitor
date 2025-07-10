@@ -1,4 +1,6 @@
+import { logExercise } from "@/app/actions/postExerciseLog";
 import { useState } from "react";
+import { notifyError, notifySuccess } from "../notifications/notify";
 
 const useFormLogic = () => {
   const [selectExerc, setSelectExerc] = useState(null); // Exercise selector state
@@ -21,8 +23,39 @@ const useFormLogic = () => {
     );
   };
 
-  const onSubmit = () => {
-    alert([selectExerc, selectDate, sets, quality, notes]);
+  const onSubmit = async (user_id) => {
+    user_id = "09db449e-7df9-4bd9-a09f-b05420889f5a";
+    if (!user_id || !selectExerc || !selectDate || sets.length === 0) {
+      notifyError("Error", "Missing required fields");
+      return;
+    }
+
+    try {
+      await logExercise({
+        user_id,
+        exercise_id: selectExerc,
+        date: selectDate,
+        form_quality: quality ?? 0,
+        notes,
+        sets: sets.map((s) => ({
+          reps: Number(s.reps),
+          weight: Number(s.weight),
+        })),
+      });
+      notifySuccess("Success", "Exercise log saved!");
+      resetForm();
+    } catch (err) {
+      console.error(err);
+      notifyError("Error", "Failed to save log.");
+    }
+  };
+
+  const resetForm = () => {
+    setSelectExerc(null);
+    setSelectDate(null);
+    setSets([{ weight: "", reps: "" }]);
+    setQuality(undefined);
+    setNotes("");
   };
 
   return {

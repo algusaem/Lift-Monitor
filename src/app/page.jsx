@@ -6,7 +6,7 @@ import pool from "@/lib/db";
 import { Card, Flex, Loader, Stack } from "@mantine/core";
 
 export default async function Home() {
-  const exercises = (await pool.query("SELECT name FROM exercises")).rows;
+  const exercises = (await pool.query("SELECT id, name FROM exercises")).rows;
 
   if (!exercises) {
     return (

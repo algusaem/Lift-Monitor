@@ -38,7 +38,10 @@ const CardContent = ({ exercises }) => {
           <Select
             placeholder="Select exercise"
             flex={1}
-            data={exercises.map((exercise) => exercise.name)}
+            data={exercises.map((exercise) => ({
+              value: exercise.id,
+              label: exercise.name,
+            }))}
             variant="filled"
             value={selectExerc}
             onChange={setSelectExerc}
