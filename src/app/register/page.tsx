@@ -1,6 +1,8 @@
-import LoginForm from "@/components/login/LoginForm";
+import { FaArrowLeft } from "react-icons/fa6";
 import { Box, Card, Flex, Text, Title } from "@mantine/core";
 import { LiaDumbbellSolid } from "react-icons/lia";
+import RegisterForm from "../../components/login/RegisterForm";
+import Link from "next/link";
 
 export default async function Home() {
   return (
@@ -17,7 +19,7 @@ export default async function Home() {
       <Card padding="lg" radius="md" withBorder p={32} miw={480}>
         <Flex w={"full"} h={"full"} direction={"column"} gap={16}>
           <FormTitle />
-          <LoginForm />
+          <RegisterForm />
         </Flex>
       </Card>
     </Flex>
@@ -37,12 +39,19 @@ const Header = () => (
 );
 
 const FormTitle = () => (
-  <Flex direction={"column"} align={"center"}>
-    <Title fw={500} order={3}>
-      Welcome back
-    </Title>
-    <Text size="sm" fw={400}>
-      Sign in to your account to continue logging your workouts.
-    </Text>
+  <Flex align="center" justify="center" w="100%" pos="relative">
+    <Link href="/" style={{ textDecoration: "none" }}>
+      <Box pos="absolute" left={0} top={0}>
+        <FaArrowLeft size={18} color="black" />
+      </Box>
+    </Link>
+    <Flex align="center" justify="center" direction="column">
+      <Title fw={500} order={3}>
+        Register new account
+      </Title>
+      <Text size="sm" fw={400}>
+        Please enter your data to create a new account.
+      </Text>
+    </Flex>
   </Flex>
 );

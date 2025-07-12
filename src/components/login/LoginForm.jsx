@@ -1,23 +1,49 @@
+"use client";
+
 import { Button, Card, Flex, Input, Text } from "@mantine/core";
 import InputLabeled from "../ui/InputLabeled";
+import { useState } from "react";
+import Link from "next/link";
+import { IoKeyOutline } from "react-icons/io5";
+import { MdOutlineEmail } from "react-icons/md";
 
 const LoginForm = () => {
+  const [userInput, setUserInput] = useState("");
+  const [pwdInput, setPwdInput] = useState("");
+
+  const onSubmit = async () => {
+    console.log(userInput);
+    console.log(pwdInput);
+  };
+
   return (
     <>
       <InputLabeled label="Email">
-        <Input placeholder="Enter your email" />
+        <Input
+          placeholder="Enter your email"
+          leftSection={<MdOutlineEmail size={16} />}
+          value={userInput}
+          onChange={(e) => setUserInput(e.target.value)}
+        />
       </InputLabeled>
       <InputLabeled label="Password">
-        <Input placeholder="*******" />
+        <Input
+          placeholder="*******"
+          leftSection={<IoKeyOutline size={16} />}
+          value={pwdInput}
+          onChange={(e) => setPwdInput(e.target.value)}
+        />
       </InputLabeled>
 
-      <Button>Sign in</Button>
+      <Button onClick={onSubmit}>Sign in</Button>
 
       <Flex justify={"center"} gap={4}>
         <Text size="sm">Don&apos;t have an account?</Text>
-        <Text size="sm" c={"persian"} fw={600} style={{ cursor: "pointer" }}>
-          Sign up
-        </Text>
+        <Link href="/register" style={{ textDecoration: "none" }}>
+          <Text size="sm" c={"persian"} fw={600} style={{ cursor: "pointer" }}>
+            Sign up
+          </Text>
+        </Link>
       </Flex>
 
       <Card padding="lg" radius="md" withBorder>
