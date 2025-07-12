@@ -16,7 +16,13 @@ export default async function Home() {
       gap={32}
     >
       <Header />
-      <Card padding="lg" radius="md" withBorder p={32} miw={480}>
+      <Card
+        padding="lg"
+        radius="md"
+        withBorder
+        p={32}
+        miw={{ base: "95%", sm: 480 }}
+      >
         <Flex w={"full"} h={"full"} direction={"column"} gap={16}>
           <FormTitle />
           <RegisterForm />
@@ -39,19 +45,12 @@ const Header = () => (
 );
 
 const FormTitle = () => (
-  <Flex align="center" justify="center" w="100%" pos="relative">
-    <Link href="/" style={{ textDecoration: "none" }}>
-      <Box pos="absolute" left={0} top={0}>
-        <FaArrowLeft size={18} color="black" />
-      </Box>
-    </Link>
-    <Flex align="center" justify="center" direction="column">
-      <Title fw={500} order={3}>
-        Register new account
-      </Title>
-      <Text size="sm" fw={400}>
-        Please enter your data to create a new account.
-      </Text>
-    </Flex>
+  <Flex direction={"column"} align={"center"}>
+    <Title fw={500} order={3}>
+      Register new account
+    </Title>
+    <Text size="sm" fw={400}>
+      Please enter your data to create a new account.
+    </Text>
   </Flex>
 );

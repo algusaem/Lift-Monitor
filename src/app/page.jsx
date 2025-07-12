@@ -14,7 +14,13 @@ export default async function Home() {
       gap={32}
     >
       <Header />
-      <Card padding="lg" radius="md" withBorder p={32} miw={480}>
+      <Card
+        padding="lg"
+        radius="md"
+        withBorder
+        p={32}
+        miw={{ base: "95%", sm: 480 }}
+      >
         <Flex w={"full"} h={"full"} direction={"column"} gap={16}>
           <FormTitle />
           <LoginForm />
