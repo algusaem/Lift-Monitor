@@ -23,16 +23,14 @@ const useFormLogic = () => {
     );
   };
 
-  const onSubmit = async (user_id) => {
-    user_id = "09db449e-7df9-4bd9-a09f-b05420889f5a";
-    if (!user_id || !selectExerc || !selectDate || sets.length === 0) {
+  const onSubmit = async () => {
+    if (!selectExerc || !selectDate || sets.length === 0) {
       notifyError("Error", "Missing required fields");
       return;
     }
 
     try {
       await logExercise({
-        user_id,
         exercise_id: selectExerc,
         date: selectDate,
         form_quality: quality ?? 0,

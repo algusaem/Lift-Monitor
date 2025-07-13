@@ -2,15 +2,17 @@
 
 import pool from "@/lib/db";
 import { randomUUID } from "crypto";
+import { getUserId } from "./getUserId";
 
 export async function logExercise({
-  user_id,
   exercise_id,
   date,
   form_quality,
   notes,
   sets,
 }) {
+  const user_id = await getUserId();
+
   if (
     !user_id ||
     !exercise_id ||

@@ -6,9 +6,9 @@ import { useState } from "react";
 import Link from "next/link";
 import { IoKeyOutline } from "react-icons/io5";
 import { MdOutlineEmail } from "react-icons/md";
-import checkUserCredentials from "@/app/actions/getExistingUser";
 import { notifyError, notifySuccess } from "../notifications/notify";
 import { useRouter } from "next/navigation";
+import postLogin from "@/app/actions/checkUserCredentials";
 
 const LoginForm = () => {
   const router = useRouter();
@@ -17,7 +17,7 @@ const LoginForm = () => {
 
   const onSubmit = async () => {
     try {
-      await checkUserCredentials(userInput, pwdInput);
+      await postLogin(userInput, pwdInput);
       notifySuccess("Success", "Login successful");
       setUserInput("");
       setPwdInput("");
