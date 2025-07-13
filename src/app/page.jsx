@@ -1,8 +1,11 @@
 import LoginForm from "@/components/login/LoginForm";
+import { authRedirect } from "@/lib/authRedirect";
 import { Box, Card, Flex, Text, Title } from "@mantine/core";
 import { LiaDumbbellSolid } from "react-icons/lia";
 
 export default async function Home() {
+  await authRedirect(); // Redirects user if already logged in
+
   return (
     <Flex
       bg={"snow"}

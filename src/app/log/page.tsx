@@ -2,12 +2,13 @@ import CardContent from "@/components/main/CardContent";
 import CardTitle from "@/components/main/CardTitle";
 import Section from "@/components/main/Section";
 import Navbar from "@/components/navbar/navbar";
+import { nonAuthRedirect } from "@/lib/authRedirect";
 import pool from "@/lib/db";
 import { Card, Flex, Loader, Stack } from "@mantine/core";
 
 export default async function Home() {
+  await nonAuthRedirect(); // Redirects user if not logged in
   const exercises = (await pool.query("SELECT id, name FROM exercises")).rows;
-
   if (!exercises) {
     return (
       <Flex justify={"center"}>

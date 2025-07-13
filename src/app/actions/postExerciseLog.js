@@ -2,7 +2,7 @@
 
 import pool from "@/lib/db";
 import { randomUUID } from "crypto";
-import { getUserId } from "./getUserId";
+import { getUserId } from "../../lib/getUserId";
 
 export async function logExercise({
   exercise_id,
