@@ -2,7 +2,7 @@
 import pool from "@/lib/db";
 
 export async function postExercise(name) {
-  if (!name) return;
+  if (!name) throw new Error("No name provided");
 
   const lower = name.toLowerCase();
 

@@ -6,7 +6,8 @@ import bcrypt from "bcrypt";
 const SALT_ROUNDS = 12;
 
 const postNewUser = async (email, password, username) => {
-  if (!email || !password || !username) return;
+  if (!email || !password || !username)
+    throw new Error("No password, email or username provided");
 
   const lowerUsername = username.toLowerCase();
   const lowerEmail = email.toLowerCase();

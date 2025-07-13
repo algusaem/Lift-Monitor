@@ -6,14 +6,26 @@ import { useState } from "react";
 import Link from "next/link";
 import { IoKeyOutline } from "react-icons/io5";
 import { MdOutlineEmail } from "react-icons/md";
+import checkUserCredentials from "@/app/actions/getExistingUser";
+import { notifyError, notifySuccess } from "../notifications/notify";
+import { useRouter } from "next/navigation";
 
 const LoginForm = () => {
+  const router = useRouter();
   const [userInput, setUserInput] = useState("");
   const [pwdInput, setPwdInput] = useState("");
 
   const onSubmit = async () => {
-    console.log(userInput);
-    console.log(pwdInput);
+    try {
+      await checkUserCredentials(userInput, pwdInput);
+      notifySuccess("Success", "Login successful");
+      setUserInput("");
+      setPwdInput("");
+      router.push("/log");
+    } catch (err) {
+      console.error(err);
+      notifyError("Login failed", "Incorrect user or password");
+    }
   };
 
   return (
@@ -29,6 +41,7 @@ const LoginForm = () => {
       <InputLabeled label="Password">
         <Input
           placeholder="*******"
+          type="password"
           leftSection={<IoKeyOutline size={16} />}
           value={pwdInput}
           onChange={(e) => setPwdInput(e.target.value)}
@@ -51,7 +64,7 @@ const LoginForm = () => {
           <Text size={"xs"} fw={600}>
             Demo credentials:
           </Text>
-          <Text size={"xs"}>Email: test01</Text>
+          <Text size={"xs"}>Email: test01@liftlogger.com</Text>
           <Text size={"xs"}>Password: test123</Text>
         </Flex>
       </Card>

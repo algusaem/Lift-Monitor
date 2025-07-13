@@ -1,8 +1,6 @@
-import { FaArrowLeft } from "react-icons/fa6";
 import { Box, Card, Flex, Text, Title } from "@mantine/core";
 import { LiaDumbbellSolid } from "react-icons/lia";
 import RegisterForm from "../../components/login/RegisterForm";
-import Link from "next/link";
 
 export default async function Home() {
   return (

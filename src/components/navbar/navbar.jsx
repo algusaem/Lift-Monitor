@@ -46,7 +46,7 @@ const MobileDrawer = () => {
             </Drawer.Header>
 
             <Stack flex={1} px={18}>
-              <NavbarLink href="/">Logs</NavbarLink>
+              <NavbarLink href="/log">Logs</NavbarLink>
               <NavbarLink href="/history">History</NavbarLink>
 
               <Flex mt="auto" mb={8} py={8} justify={"center"}>
