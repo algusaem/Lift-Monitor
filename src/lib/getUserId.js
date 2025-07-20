@@ -8,7 +8,8 @@ if (!rawSecret) throw new Error("JWT_SECRET env var not set");
 const JWT_SECRET = new TextEncoder().encode(rawSecret);
 
 export async function getUserId() {
-  const token = cookies().get("session")?.value;
+  const cookieStore = await cookies();
+  const token = cookieStore.get("session")?.value;
   if (!token) return null;
 
   try {

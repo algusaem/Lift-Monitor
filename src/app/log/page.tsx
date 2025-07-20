@@ -4,18 +4,14 @@ import Section from "@/components/main/Section";
 import Navbar from "@/components/navbar/navbar";
 import { nonAuthRedirect } from "@/lib/authRedirect";
 import pool from "@/lib/db";
-import { Card, Flex, Loader, Stack } from "@mantine/core";
+import { Card, Flex, Stack } from "@mantine/core";
+import Loader from "@/components/ui/Loader";
 
 export default async function Home() {
   await nonAuthRedirect(); // Redirects user if not logged in
+
   const exercises = (await pool.query("SELECT id, name FROM exercises")).rows;
-  if (!exercises) {
-    return (
-      <Flex justify={"center"}>
-        <Loader />
-      </Flex>
-    );
-  }
+  if (!exercises) return <Loader />;
 
   return (
     <Stack bg={"snow"} h={"100%"} w={"100%"}>
