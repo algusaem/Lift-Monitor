@@ -3,14 +3,14 @@ import CardTitle from "@/components/main/CardTitle";
 import Section from "@/components/main/Section";
 import Navbar from "@/components/navbar/navbar";
 import { nonAuthRedirect } from "@/lib/authRedirect";
-import pool from "@/lib/db";
 import { Card, Flex, Stack } from "@mantine/core";
 import Loader from "@/components/ui/Loader";
+import { getExercises } from "../actions/getExercises";
 
 export default async function Home() {
   await nonAuthRedirect(); // Redirects user if not logged in
 
-  const exercises = (await pool.query("SELECT id, name FROM exercises")).rows;
+  const exercises = await getExercises();
   if (!exercises) return <Loader />;
 
   return (

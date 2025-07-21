@@ -4,7 +4,7 @@ import { notifyError, notifySuccess } from "../notifications/notify";
 
 const useFormLogic = () => {
   const [selectExerc, setSelectExerc] = useState(null); // Exercise selector state
-  const [selectDate, setSelectDate] = useState(null); // Date state
+  const [selectDate, setSelectDate] = useState(new Date()); // Date state
   const [sets, setSets] = useState([{ weight: "", reps: "" }]); // Reps state
   const [quality, setQuality] = useState(undefined); // Quality state
   const [notes, setNotes] = useState(""); // Notes state
@@ -50,7 +50,7 @@ const useFormLogic = () => {
 
   const resetForm = () => {
     setSelectExerc(null);
-    setSelectDate(null);
+    setSelectDate(new Date());
     setSets([{ weight: "", reps: "" }]);
     setQuality(undefined);
     setNotes("");
