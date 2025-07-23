@@ -3,13 +3,29 @@ import pool from "@/lib/db";
 import { getUserId } from "@/lib/getUserId";
 
 export async function getExerciseLog() {
-  const user_id = await getUserId(); // User id comes from session
+  const user_id = await getUserId();
 
-  const { rows: exercise_log } = await pool.query(
-    "SELECT * FROM exercise_logs WHERE user_id = $1",
+  const { rows: logs } = await pool.query(
+    `
+    SELECT 
+      el.*, 
+      COALESCE(
+        json_agg(
+          json_build_object(
+            'weight', s.weight,
+            'reps', s.reps
+          )
+        ) FILTER (WHERE s.id IS NOT NULL),
+        '[]'
+      ) AS sets
+    FROM exercise_logs el
+    LEFT JOIN sets s ON s.log_id = el.id
+    WHERE el.user_id = $1
+    GROUP BY el.id
+    ORDER BY el.date DESC
+    `,
     [user_id]
   );
-  if (exercise_log.length === 0) return [];
 
-  return exercise_log;
+  return logs;
 }
