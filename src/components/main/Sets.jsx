@@ -1,9 +1,10 @@
-import { Card, Flex, Text, ActionIcon, Input } from "@mantine/core";
+import { Flex, Text, ActionIcon, Input } from "@mantine/core";
 import { IoTrashOutline } from "react-icons/io5";
+import CardItem from "../ui/CardItem";
 
 const Sets = ({ index, reps, weight, onChange, isDeletable, onDelete }) => {
   return (
-    <Card w={"full"} padding="lg" radius="md" withBorder>
+    <CardItem w={"full"}>
       <Flex
         w={"full"}
         align={"center"}
@@ -39,7 +40,7 @@ const Sets = ({ index, reps, weight, onChange, isDeletable, onDelete }) => {
           </ActionIcon>
         )}
       </Flex>
-    </Card>
+    </CardItem>
   );
 };
 

@@ -1,7 +1,8 @@
-import { Box, Card, Flex, Text, Title } from "@mantine/core";
+import { Box, Flex, Text, Title } from "@mantine/core";
 import { LiaDumbbellSolid } from "react-icons/lia";
 import RegisterForm from "../../components/login/RegisterForm";
 import { authRedirect } from "@/lib/authRedirect";
+import CardItem from "@/components/ui/CardItem";
 
 export default async function Home() {
   await authRedirect(); // Redirects user if already logged in
@@ -16,18 +17,12 @@ export default async function Home() {
       gap={32}
     >
       <Header />
-      <Card
-        padding="lg"
-        radius="md"
-        withBorder
-        p={32}
-        miw={{ base: "95%", sm: 480 }}
-      >
+      <CardItem p={32} miw={{ base: "95%", sm: 480 }}>
         <Flex w={"full"} h={"full"} direction={"column"} gap={16}>
           <FormTitle />
           <RegisterForm />
         </Flex>
-      </Card>
+      </CardItem>
     </Flex>
   );
 }

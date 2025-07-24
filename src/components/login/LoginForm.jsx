@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Card, Flex, Input, Text } from "@mantine/core";
+import { Button, Flex, Input, Text } from "@mantine/core";
 import InputLabeled from "../ui/InputLabeled";
 import { useState } from "react";
 import Link from "next/link";
@@ -9,6 +9,7 @@ import { MdOutlineEmail } from "react-icons/md";
 import { notifyError, notifySuccess } from "../notifications/notify";
 import { useRouter } from "next/navigation";
 import postLogin from "@/app/actions/checkUserCredentials";
+import CardItem from "../ui/CardItem";
 
 const LoginForm = () => {
   const router = useRouter();
@@ -59,7 +60,7 @@ const LoginForm = () => {
         </Link>
       </Flex>
 
-      <Card padding="lg" radius="md" withBorder>
+      <CardItem>
         <Flex direction={"column"} gap={1}>
           <Text size={"xs"} fw={600}>
             Demo credentials:
@@ -67,7 +68,7 @@ const LoginForm = () => {
           <Text size={"xs"}>Email: test01@liftlogger.com</Text>
           <Text size={"xs"}>Password: test123</Text>
         </Flex>
-      </Card>
+      </CardItem>
     </>
   );
 };

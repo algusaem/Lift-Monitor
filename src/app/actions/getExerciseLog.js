@@ -8,7 +8,12 @@ export async function getExerciseLog() {
   const { rows: logs } = await pool.query(
     `
     SELECT 
-      el.*, 
+      el.id,
+      el.date,
+      el.form_quality,
+      el.notes,
+      el.created_at,
+      ex.name AS exercise_name,
       COALESCE(
         json_agg(
           json_build_object(
@@ -20,8 +25,9 @@ export async function getExerciseLog() {
       ) AS sets
     FROM exercise_logs el
     LEFT JOIN sets s ON s.log_id = el.id
+    INNER JOIN exercises ex ON ex.id = el.exercise_id
     WHERE el.user_id = $1
-    GROUP BY el.id
+    GROUP BY el.id, ex.name
     ORDER BY el.date DESC
     `,
     [user_id]
