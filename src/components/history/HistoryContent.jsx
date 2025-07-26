@@ -18,13 +18,13 @@ const HistoryContent = ({ exercises, exercise_log }) => (
 export default HistoryContent;
 
 const HistoryItem = ({ log }) => (
-  <CardItem w={"full"} h={"100%"}>
+  <CardItem w={"full"} h={"100%"} mb={16}>
     <Flex w={"full"} h={"100%"} direction={"column"} gap={32}>
       <HistoryHeader log={log} />
 
       <Flex direction={"column"} gap={16}>
         <Text fw={600}>Sets:</Text>
-        <Flex gap={16}>
+        <Flex gap={16} wrap={"wrap"} w={"full"}>
           {log.sets.map((set, index) => (
             <SetItem set={set} key={index} index={index} />
           ))}
@@ -72,7 +72,7 @@ const HistoryHeader = ({ log }) => {
 };
 
 const SetItem = ({ set, index }) => (
-  <CardItem gap={16} py={16} px={64}>
+  <CardItem gap={16}>
     <Text fw={600} size="sm">
       Set {index + 1}
     </Text>

@@ -16,7 +16,12 @@ const Filters = ({ exercises }) => {
   } = useFilters();
 
   return (
-    <Flex w={"full"} gap={16}>
+    <Flex
+      w={"full"}
+      gap={16}
+      direction={{ base: "column", sm: "row" }}
+      wrap="wrap"
+    >
       <InputLabeled label="Exercise">
         <Select
           placeholder="Select exercise"
