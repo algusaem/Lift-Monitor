@@ -8,12 +8,13 @@ import HistoryContent from "@/components/history/HistoryContent";
 
 export default async function History() {
   await nonAuthRedirect(); // Redirects user if not logged in
+  const noHistory = exercise_log.length === 0;
 
+  // Fetch exercises and exercise log data
   const exercises = await getExercises();
   const exercise_log = await getExerciseLog();
 
   if (!exercise_log || !exercises) return <Loader />;
-  if (exercise_log.length === 0) return <Stack> No history found </Stack>;
 
   return (
     <Stack bg={"snow"} h={"100%"} w={"100%"}>
@@ -21,7 +22,11 @@ export default async function History() {
         <Navbar />
         <Stack w={{ base: "100%", md: "60%" }} px={16}>
           <PageTitle />
-          <HistoryContent exercises={exercises} exercise_log={exercise_log} />
+          {noHistory ? (
+            <Stack> No history found </Stack>
+          ) : (
+            <HistoryContent exercises={exercises} exercise_log={exercise_log} />
+          )}
         </Stack>
       </Stack>
     </Stack>
