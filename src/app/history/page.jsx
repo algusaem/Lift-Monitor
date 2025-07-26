@@ -8,12 +8,12 @@ import HistoryContent from "@/components/history/HistoryContent";
 
 export default async function History() {
   await nonAuthRedirect(); // Redirects user if not logged in
-  const noHistory = exercise_log.length === 0;
 
   // Fetch exercises and exercise log data
   const exercises = await getExercises();
   const exercise_log = await getExerciseLog();
 
+  const noHistory = exercise_log.length === 0;
   if (!exercise_log || !exercises) return <Loader />;
 
   return (
