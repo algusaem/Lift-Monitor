@@ -3,17 +3,47 @@
 import { CiCalendarDate } from "react-icons/ci";
 import { Badge, Divider, Flex, Group, Stack, Text } from "@mantine/core";
 import Filters from "./Filters";
-import { FiltersProvider } from "./useFilters";
+import { FiltersProvider, useFilters } from "./useFilters";
 import CardItem from "../ui/CardItem";
 
 const HistoryContent = ({ exercises, exercise_log }) => (
   <FiltersProvider>
-    <Filters exercises={exercises} />
-    {exercise_log.map((log) => (
-      <HistoryItem log={log} key={log.id} />
-    ))}
+    <FilteredLogs exercises={exercises} exercise_log={exercise_log} />
   </FiltersProvider>
 );
+
+const FilteredLogs = ({ exercises, exercise_log }) => {
+  const { selectExerc, startDate, endDate } = useFilters();
+
+  const filtered = exercise_log.filter((log) => {
+    const matchesExercise = !selectExerc || log.exercise_id === selectExerc;
+
+    const toDateOnly = (date) => {
+      return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    };
+
+    const logDate = toDateOnly(new Date(log.date));
+    const matchesStart =
+      !startDate || logDate >= toDateOnly(new Date(startDate));
+    const matchesEnd = !endDate || logDate <= toDateOnly(new Date(endDate));
+
+    return matchesExercise && matchesStart && matchesEnd;
+  });
+
+  return (
+    <>
+      <Filters exercises={exercises} />
+      {filtered.map((log) => (
+        <HistoryItem log={log} key={log.id} />
+      ))}
+      {filtered.length === 0 && (
+        <Text align="center" c="dimmed" mt={32}>
+          No entries match your filters.
+        </Text>
+      )}
+    </>
+  );
+};
 
 export default HistoryContent;
 

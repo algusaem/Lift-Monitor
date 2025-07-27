@@ -13,6 +13,7 @@ export async function getExerciseLog() {
       el.form_quality,
       el.notes,
       el.created_at,
+      el.exercise_id,
       ex.name AS exercise_name,
       COALESCE(
         json_agg(
@@ -27,7 +28,7 @@ export async function getExerciseLog() {
     LEFT JOIN sets s ON s.log_id = el.id
     INNER JOIN exercises ex ON ex.id = el.exercise_id
     WHERE el.user_id = $1
-    GROUP BY el.id, ex.name
+    GROUP BY el.id, el.exercise_id, ex.name
     ORDER BY el.date DESC
     `,
     [user_id]
