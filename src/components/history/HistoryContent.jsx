@@ -74,7 +74,7 @@ const HistoryItem = ({ log }) => (
 const HistoryHeader = ({ log }) => {
   const qualities = ["Horrible", "Bad", "Decent", "Good", "Excellent"];
   const qualityLabel = qualities[log.form_quality] || "Unknown";
-  const qualityColor = log.form_quality === 2 ? "green" : "red";
+  const qualityColor = log.form_quality >= 2 ? "green" : "red";
 
   return (
     <Flex w="100%" justify="space-between" align="flex-start">
