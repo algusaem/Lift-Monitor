@@ -1,6 +1,6 @@
 import Navbar from "@/components/navbar/navbar";
 import { nonAuthRedirect } from "@/lib/authRedirect";
-import { Stack, Text, Title } from "@mantine/core";
+import { ScrollArea, Stack, Text, Title } from "@mantine/core";
 import { getExerciseLog } from "../actions/getExerciseLog";
 import Loader from "@/components/ui/Loader";
 import { getExercises } from "../actions/getExercises";
@@ -17,18 +17,24 @@ export default async function History() {
   if (!exercise_log || !exercises) return <Loader />;
 
   return (
-    <Stack bg={"snow"} h={"100%"} w={"100%"}>
-      <Stack w={"full"} align="center">
-        <Navbar />
-        <Stack w={{ base: "100%", md: "60%" }} px={16}>
-          <PageTitle />
-          {noHistory ? (
-            <Stack> No history found </Stack>
-          ) : (
-            <HistoryContent exercises={exercises} exercise_log={exercise_log} />
-          )}
+    <Stack h="100%" w="100%" spacing={0} bg="snow">
+      <Navbar />
+
+      <ScrollArea w={"100%"} flex={1}>
+        <Stack mih="100%" w="100%" align="center" px={16}>
+          <Stack w={{ base: "100%", md: "60%" }}>
+            <PageTitle />
+            {noHistory ? (
+              <Stack>No history found</Stack>
+            ) : (
+              <HistoryContent
+                exercises={exercises}
+                exercise_log={exercise_log}
+              />
+            )}
+          </Stack>
         </Stack>
-      </Stack>
+      </ScrollArea>
     </Stack>
   );
 }
