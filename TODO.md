@@ -1,0 +1,6 @@
+- Loader/Prevention from trying to log in multiple times in a row.
+- Settings.
+- Autocomplete on "add set" with same weight.
+- Search filter in exercise selection.
+- Prevent normal users from adding a new exercise type.
+- Save exercise doesn't let the user skip the form quality.

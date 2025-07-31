@@ -3,12 +3,13 @@
 import { Box, Flex, Stack, Text } from "@mantine/core";
 import Link from "next/link";
 import { LiaDumbbellSolid } from "react-icons/lia";
-import { FaRegUser } from "react-icons/fa6";
 import { useDisclosure } from "@mantine/hooks";
 import { Drawer, Button } from "@mantine/core";
 import { CiLogout } from "react-icons/ci";
 import { IoReorderThreeOutline } from "react-icons/io5";
 import { usePathname } from "next/navigation";
+import UserMenu from "./UserMenu";
+import { logout } from "@/lib/logoutUser";
 
 const Navbar = () => {
   return (
@@ -53,9 +54,7 @@ const MobileDrawer = () => {
                 <CiLogout
                   size={24}
                   cursor={"pointer"}
-                  onClick={() => {
-                    console.log("logout");
-                  }}
+                  onClick={async () => await logout()}
                 />
               </Flex>
             </Stack>
@@ -75,10 +74,10 @@ const DesktopNavBar = () => (
   >
     <NavIcon />
     <Flex gap={18}>
-      <NavbarLink href="/">Logs</NavbarLink>
+      <NavbarLink href="/log">Logs</NavbarLink>
       <NavbarLink href="/history">History</NavbarLink>
     </Flex>
-    <FaRegUser />
+    <UserMenu />
   </Flex>
 );
 

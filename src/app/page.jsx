@@ -34,7 +34,7 @@ const Header = () => (
       <LiaDumbbellSolid size={42} color="var(--mantine-color-persian-6)" />
       <Title fw={600}>Lift Logger</Title>
     </Flex>
-    <Text size="sm" fw={500}>
+    <Text size="sm" fw={500} ta={"center"}>
       Weight lift tracking made for everyone
     </Text>
   </Box>
@@ -45,7 +45,7 @@ const FormTitle = () => (
     <Title fw={500} order={3}>
       Welcome back
     </Title>
-    <Text size="sm" fw={400}>
+    <Text size="sm" fw={400} ta={"center"}>
       Sign in to your account to continue logging your workouts.
     </Text>
   </Flex>
