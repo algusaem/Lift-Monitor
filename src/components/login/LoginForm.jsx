@@ -10,22 +10,26 @@ import { notifyError, notifySuccess } from "../notifications/notify";
 import { useRouter } from "next/navigation";
 import postLogin from "@/app/actions/checkUserCredentials";
 import CardItem from "../ui/CardItem";
+import Loader from "../ui/Loader";
 
 const LoginForm = () => {
   const router = useRouter();
   const [userInput, setUserInput] = useState("");
   const [pwdInput, setPwdInput] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const onSubmit = async () => {
+    if (isSubmitting) return;
+    setIsSubmitting(true);
+
     try {
       await postLogin(userInput, pwdInput);
       notifySuccess("Success", "Login successful");
-      setUserInput("");
-      setPwdInput("");
       router.push("/log");
     } catch (err) {
       console.error(err);
       notifyError("Login failed", "Incorrect user or password");
+      setIsSubmitting(false);
     }
   };
 
@@ -37,6 +41,9 @@ const LoginForm = () => {
           leftSection={<MdOutlineEmail size={16} />}
           value={userInput}
           onChange={(e) => setUserInput(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" && !isSubmitting) onSubmit();
+          }}
         />
       </InputLabeled>
       <InputLabeled label="Password">
@@ -46,10 +53,13 @@ const LoginForm = () => {
           leftSection={<IoKeyOutline size={16} />}
           value={pwdInput}
           onChange={(e) => setPwdInput(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" && !isSubmitting) onSubmit();
+          }}
         />
       </InputLabeled>
 
-      <Button onClick={onSubmit}>Sign in</Button>
+      {isSubmitting ? <Loader /> : <Button onClick={onSubmit}>Sign in</Button>}
 
       <Flex justify={"center"} gap={4}>
         <Text size="sm">Don&apos;t have an account?</Text>

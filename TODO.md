@@ -1,4 +1,3 @@
-- Loader/Prevention from trying to log in multiple times in a row.
 - Settings.
 - Autocomplete on "add set" with same weight.
 - Search filter in exercise selection.
