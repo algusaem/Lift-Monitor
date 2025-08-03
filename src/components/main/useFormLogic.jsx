@@ -10,7 +10,10 @@ const useFormLogic = () => {
   const [notes, setNotes] = useState(""); // Notes state
 
   const handleAddSet = () => {
-    setSets((prev) => [...prev, { weight: "", reps: "" }]);
+    setSets((prev) => {
+      const lastWeight = prev.length > 0 ? prev[prev.length - 1].weight : "";
+      return [...prev, { weight: lastWeight, reps: "" }];
+    });
   };
 
   const handleDeleteSet = (index) => {
