@@ -36,7 +36,10 @@ const useFormLogic = () => {
       await logExercise({
         exercise_id: selectExerc,
         date: selectDate,
-        form_quality: quality ?? 0,
+        form_quality:
+          typeof quality === "number" && quality >= 1 && quality <= 5
+            ? quality
+            : 3,
         notes,
         sets: sets.map((s) => ({
           reps: Number(s.reps),

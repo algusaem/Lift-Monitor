@@ -1,5 +1,5 @@
 - Settings.
 - Search filter in exercise selection.
 - Prevent normal users from adding a new exercise type.
-- Save exercise doesn't let the user skip the form quality.
 - Prevent saving exercise multiple times in a row.
+- Delete logs
