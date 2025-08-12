@@ -2,4 +2,3 @@
 - Search filter in exercise selection.
 - Prevent normal users from adding a new exercise type.
 - Prevent saving exercise multiple times in a row.
-- Delete logs
