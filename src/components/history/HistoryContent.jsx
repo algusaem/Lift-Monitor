@@ -5,6 +5,9 @@ import { Badge, Divider, Flex, Group, Stack, Text } from "@mantine/core";
 import Filters from "./Filters";
 import { FiltersProvider, useFilters } from "./useFilters";
 import CardItem from "../ui/CardItem";
+import { MdDelete } from "react-icons/md";
+import { useRouter } from "next/navigation";
+import { deleteExerciseLog } from "@/app/actions/deleteExerciseLog";
 
 const HistoryContent = ({ exercises, exercise_log }) => (
   <FiltersProvider>
@@ -72,9 +75,15 @@ const HistoryItem = ({ log }) => (
 );
 
 const HistoryHeader = ({ log }) => {
+  const router = useRouter();
   const qualities = ["Horrible", "Bad", "Decent", "Good", "Excellent"];
   const qualityLabel = qualities[log.form_quality] || "Unknown";
   const qualityColor = log.form_quality >= 2 ? "green" : "red";
+
+  const handleDelete = async () => {
+    await deleteExerciseLog({ log_id: log.id });
+    router.refresh();
+  };
 
   return (
     <Flex w="100%" justify="space-between" align="flex-start">
@@ -94,9 +103,24 @@ const HistoryHeader = ({ log }) => {
           </Text>
         </Group>
       </Stack>
-      <Badge size="sm" variant="dot" color={qualityColor}>
-        {qualityLabel}
-      </Badge>
+
+      <Flex justify={"center"} align={"center"} gap={16}>
+        <Badge
+          size="sm"
+          variant="dot"
+          color={qualityColor}
+          display={{ base: "none", sm: "flex" }}
+        >
+          {qualityLabel}
+        </Badge>
+
+        <MdDelete
+          size={24}
+          color="red"
+          cursor={"pointer"}
+          onClick={handleDelete}
+        />
+      </Flex>
     </Flex>
   );
 };
