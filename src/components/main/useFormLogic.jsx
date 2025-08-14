@@ -3,11 +3,12 @@ import { useState } from "react";
 import { notifyError, notifySuccess } from "../notifications/notify";
 
 const useFormLogic = () => {
-  const [selectExerc, setSelectExerc] = useState(null); // Exercise selector state
-  const [selectDate, setSelectDate] = useState(new Date()); // Date state
-  const [sets, setSets] = useState([{ weight: "", reps: "" }]); // Reps state
-  const [quality, setQuality] = useState(undefined); // Quality state
-  const [notes, setNotes] = useState(""); // Notes state
+  const [selectExerc, setSelectExerc] = useState(null);
+  const [selectDate, setSelectDate] = useState(new Date());
+  const [sets, setSets] = useState([{ weight: "", reps: "" }]);
+  const [quality, setQuality] = useState(undefined);
+  const [notes, setNotes] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleAddSet = () => {
     setSets((prev) => {
@@ -27,11 +28,13 @@ const useFormLogic = () => {
   };
 
   const onSubmit = async () => {
+    if (isSubmitting) return;
     if (!selectExerc || !selectDate || sets.length === 0) {
       notifyError("Error", "Missing required fields");
       return;
     }
 
+    setIsSubmitting(true);
     try {
       await logExercise({
         exercise_id: selectExerc,
@@ -51,6 +54,8 @@ const useFormLogic = () => {
     } catch (err) {
       console.error(err);
       notifyError("Error", "Failed to save log.");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -77,6 +82,7 @@ const useFormLogic = () => {
     handleDeleteSet,
     updateSet,
     onSubmit,
+    isSubmitting,
   };
 };
 

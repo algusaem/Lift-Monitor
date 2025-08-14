@@ -24,7 +24,8 @@ const CardContent = ({ exercises }) => {
     handleDeleteSet,
     updateSet,
     onSubmit,
-  } = useFormLogic(); // States and handlers of the exercise form
+    isSubmitting,
+  } = useFormLogic();
 
   return (
     <Flex w={"full"} direction={"column"} flex={1} gap={16}>
@@ -107,6 +108,7 @@ const CardContent = ({ exercises }) => {
           leftSection={<IoSaveOutline size={20} />}
           variant="filled"
           onClick={onSubmit}
+          disabled={isSubmitting}
         >
           Save exercise
         </Button>
