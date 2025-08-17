@@ -3,12 +3,12 @@ import { createContext, useContext, useState } from "react";
 const FiltersContext = createContext();
 
 export const FiltersProvider = ({ children }) => {
-  const [selectExerc, setSelectExerc] = useState(null); // Exercise selector state
-  const [startDate, setStartDate] = useState(null); // Start date state
-  const [endDate, setEndDate] = useState(new Date()); // End date state
+  const [selectExerc, setSelectExerc] = useState(null);
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(new Date());
 
   return (
-    <FiltersContext
+    <FiltersContext.Provider
       value={{
         selectExerc,
         setSelectExerc,
@@ -19,7 +19,7 @@ export const FiltersProvider = ({ children }) => {
       }}
     >
       {children}
-    </FiltersContext>
+    </FiltersContext.Provider>
   );
 };
 

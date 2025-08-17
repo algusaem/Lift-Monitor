@@ -29,7 +29,6 @@ const CardContent = ({ exercises }) => {
 
   return (
     <Flex w={"full"} direction={"column"} flex={1} gap={16}>
-      {/* First row */}
       <Flex
         w={"full"}
         justify={"space-between"}
@@ -41,12 +40,14 @@ const CardContent = ({ exercises }) => {
             placeholder="Select exercise"
             flex={1}
             data={exercises.map((exercise) => ({
-              value: exercise.id,
+              value: String(exercise.id),
               label: exercise.name,
             }))}
             variant="filled"
             value={selectExerc}
             onChange={setSelectExerc}
+            searchable
+            nothingFoundMessage="No matches"
           />
         </InputLabeled>
 
@@ -61,7 +62,6 @@ const CardContent = ({ exercises }) => {
         </InputLabeled>
       </Flex>
 
-      {/* Second row */}
       <Flex w={"full"} justify={"space-between"} align={"center"}>
         <Text fw={500} size="lg">
           Sets
@@ -75,7 +75,6 @@ const CardContent = ({ exercises }) => {
         </Button>
       </Flex>
 
-      {/* Third row */}
       {sets.map((set, i) => (
         <Sets
           key={i}
@@ -88,10 +87,8 @@ const CardContent = ({ exercises }) => {
         />
       ))}
 
-      {/* Fourth row */}
       <Form form={quality} setForm={setQuality} />
 
-      {/* Fifth row */}
       <Flex w={"full"} direction={"column"} gap={4}>
         <Text size="sm">Notes</Text>
         <Textarea
@@ -102,7 +99,6 @@ const CardContent = ({ exercises }) => {
         />
       </Flex>
 
-      {/* Sixth row */}
       <Flex w={"full"} justify={"center"}>
         <Button
           leftSection={<IoSaveOutline size={20} />}

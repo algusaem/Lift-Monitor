@@ -27,12 +27,14 @@ const Filters = ({ exercises }) => {
           placeholder="Select exercise"
           flex={1}
           data={exercises.map((exercise) => ({
-            value: exercise.id,
+            value: String(exercise.id),
             label: exercise.name,
           }))}
           variant="filled"
           value={selectExerc}
           onChange={setSelectExerc}
+          searchable
+          nothingFoundMessage="No matches"
         />
       </InputLabeled>
 
