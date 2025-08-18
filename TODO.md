@@ -1,3 +1,2 @@
 - Settings.
-- Search filter in exercise selection (maybe being able to type is enough).
 - Prevent normal users from adding a new exercise type.
