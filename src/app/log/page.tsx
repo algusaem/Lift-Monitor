@@ -7,11 +7,13 @@ import { Flex, ScrollArea, Stack } from "@mantine/core";
 import Loader from "@/components/ui/Loader";
 import CardItem from "@/components/ui/CardItem";
 import { getExercises } from "../actions/getExercises";
+import { getUserRole } from "../actions/getUserRole";
 
 export default async function Home() {
   await nonAuthRedirect();
 
   const exercises = await getExercises();
+  const isUser = (await getUserRole()) === "user";
   if (!exercises) return <Loader />;
 
   return (
@@ -21,7 +23,7 @@ export default async function Home() {
       <ScrollArea w="100%" flex={1}>
         <Stack mih="100%" w="100%" align="center" px={16} pb={16}>
           <Stack w={{ base: "100%", md: "60%" }}>
-            <Section exercises={exercises} />
+            <Section exercises={exercises} isUser={isUser} />
             <CardItem w="100%" h="100%">
               <Flex w="100%" h="100%" direction="column" gap={32}>
                 <CardTitle />

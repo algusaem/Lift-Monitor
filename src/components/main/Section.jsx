@@ -16,7 +16,7 @@ import { postExercise } from "@/app/actions/postExercise";
 import { notifyError, notifySuccess } from "../notifications/notify";
 import { useRouter } from "next/navigation";
 
-const Section = ({ exercises }) => {
+const Section = ({ exercises, isUser }) => {
   const router = useRouter();
   const [opened, { open, close }] = useDisclosure(false);
   const [newExercise, setNewExercise] = useState(false);
@@ -48,6 +48,13 @@ const Section = ({ exercises }) => {
     }
   };
 
+  const onUserClick = () => {
+    notifySuccess(
+      "Exercise permission requested",
+      "The admin has been notified. Please wait for approval."
+    );
+  };
+
   return (
     <Flex
       w={"full"}
@@ -64,7 +71,10 @@ const Section = ({ exercises }) => {
           Track individual exercises with sets, reps and weight
         </Text>
       </Stack>
-      <Button leftSection={<IoAddSharp size={24} />} onClick={open}>
+      <Button
+        leftSection={<IoAddSharp size={24} />}
+        onClick={isUser ? onUserClick : open}
+      >
         New exercise type
       </Button>
       <Modal opened={opened} onClose={close} title="New exercise type" centered>
