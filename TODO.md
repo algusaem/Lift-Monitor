@@ -1,2 +1,1 @@
 - Settings.
-- Prevent normal users from adding a new exercise type.
