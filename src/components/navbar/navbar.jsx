@@ -106,6 +106,6 @@ const NavbarLink = ({ href, children }) => {
 const NavIcon = () => (
   <Flex align={"center"} gap={4}>
     <LiaDumbbellSolid size={24} color="var(--mantine-color-persian-6)" />
-    <Text fw={600}>Lift Logger</Text>
+    <Text fw={600}>Lift Monitor</Text>
   </Flex>
 );

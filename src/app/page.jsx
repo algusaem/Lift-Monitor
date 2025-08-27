@@ -32,7 +32,7 @@ const Header = () => (
   <Box>
     <Flex align={"center"} justify={"center"} gap={4}>
       <LiaDumbbellSolid size={42} color="var(--mantine-color-persian-6)" />
-      <Title fw={600}>Lift Logger</Title>
+      <Title fw={600}>Lift Monitor</Title>
     </Flex>
     <Text size="sm" fw={500} ta={"center"}>
       Weight lift tracking made for everyone
