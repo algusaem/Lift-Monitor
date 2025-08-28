@@ -1,2 +1,3 @@
 - Settings
 - Favicon
+- Decimals are added in Spanish format when adding another set instead of imperial.
