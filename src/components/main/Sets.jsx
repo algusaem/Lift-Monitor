@@ -1,4 +1,4 @@
-import { Flex, Text, ActionIcon, Input } from "@mantine/core";
+import { Flex, Text, ActionIcon, NumberInput } from "@mantine/core";
 import { IoTrashOutline } from "react-icons/io5";
 import CardItem from "../ui/CardItem";
 
@@ -13,22 +13,38 @@ const Sets = ({ index, reps, weight, onChange, isDeletable, onDelete }) => {
         direction={{ base: "column", sm: "row" }}
       >
         <Text>Set {index}</Text>
-        <Input
-          type="number"
+
+        <NumberInput
           variant="filled"
           placeholder="0 kg"
           value={weight}
-          onChange={(e) => onChange("weight", e.currentTarget.value)}
+          onChange={(val) =>
+            onChange(
+              "weight",
+              val === null || val === undefined ? "" : String(val)
+            )
+          }
+          decimalSeparator="."
+          step={0.5}
+          min={0}
           flex={1}
         />
-        <Input
-          type="number"
+
+        <NumberInput
           variant="filled"
           placeholder="0 reps"
           value={reps}
-          onChange={(e) => onChange("reps", e.currentTarget.value)}
+          onChange={(val) =>
+            onChange(
+              "reps",
+              val === null || val === undefined ? "" : String(val)
+            )
+          }
+          min={0}
+          allowDecimal={false}
           flex={1}
         />
+
         {isDeletable && (
           <ActionIcon
             variant="subtle"

@@ -12,8 +12,9 @@ const useFormLogic = () => {
 
   const handleAddSet = () => {
     setSets((prev) => {
-      const lastWeight = prev.length > 0 ? prev[prev.length - 1].weight : "";
-      return [...prev, { weight: lastWeight, reps: "" }];
+      const last =
+        prev.length > 0 ? prev[prev.length - 1] : { weight: "", reps: "" };
+      return [...prev, { weight: last.weight ?? "", reps: last.reps ?? "" }];
     });
   };
 
