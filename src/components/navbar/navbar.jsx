@@ -47,6 +47,7 @@ const MobileDrawer = () => {
             </Drawer.Header>
 
             <Stack flex={1} px={18}>
+              <NavbarLink href="/dashboard">Dashboard</NavbarLink>
               <NavbarLink href="/log">Logs</NavbarLink>
               <NavbarLink href="/history">History</NavbarLink>
 
@@ -74,6 +75,7 @@ const DesktopNavBar = () => (
   >
     <NavIcon />
     <Flex gap={18}>
+      <NavbarLink href="/dashboard">Dashboard</NavbarLink>
       <NavbarLink href="/log">Logs</NavbarLink>
       <NavbarLink href="/history">History</NavbarLink>
     </Flex>

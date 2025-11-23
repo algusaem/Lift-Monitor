@@ -1,5 +1,4 @@
 - Settings
-- Dashboard
 - Weekly Goal, Monthly Goal, Yearly Goal
 - Calendar
 - Stats by exercise
